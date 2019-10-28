@@ -126,11 +126,17 @@ def expire_todos():
     for todo in collection.find():
         if datetime.now() - todo["created"] > timedelta(hours=1) and todo["is_done"]:
             delete_by_id(todo["_id"])
-
+def reminders():
+    """
+    gives a reminder to the user will be notified a day before and on the due date on opening the terminal
+    """
+    for todo in collection.find():
+        if todo["created"] - datetime.now() < timedelta(hours=24) and !todo["is_done"]:
+            print("Deadline for",todo["text"],"in ",todo["text"],"hrs")
 
 def main():
     expire_todos()
-
+    reminders()
     parser = create_parser()
 
     args = parser.parse_args()  # Dictionary with key names as options
