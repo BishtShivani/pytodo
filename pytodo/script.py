@@ -131,7 +131,7 @@ def reminders():
     gives a reminder to the user will be notified a day before and on the due date on opening the terminal
     """
     for todo in collection.find():
-        if todo["created"] - datetime.now() < timedelta(hours=24) and !todo["is_done"]:
+        if todo["created"] - datetime.now() < timedelta(hours=24) and !(todo["is_done"]):
             print("Deadline for",todo["text"],"in ",todo["text"],"hrs")
 
 def main():
